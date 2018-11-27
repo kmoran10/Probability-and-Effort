@@ -16,7 +16,7 @@ colnames(data2)[6:8] <- c("Number.A1", "Number.A2", "Number.A3") #rename cols to
 
 data2 <- data2[!apply(is.na(data2) | data2 == "", 1, all),] #removes all NAs and empty cells
 
-#
+# group number a1 a2 and a3, remove first row, group the other cols, remove bottom row, combine those, fixes mismatch problem.
 
 data3 <- data2 %>%
   mutate(correct.LP= ifelse(Enter.State==3,1,0)) %>% #create new col with "correct LPs"/active lever presses 
