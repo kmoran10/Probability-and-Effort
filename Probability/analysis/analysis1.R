@@ -39,12 +39,9 @@ names(p12res) <- substr(p12files, 1, 31)
 
 
 data_p12 <- p12res %>% ####50s and 60s, evens are experiments, odds are ctrl
-  bind_rows %>%
-  mutate(Group = ifelse(grepl("0",data_p12$Subject), "Ctrl", "Expt")) %>%
-  mutate(Group = ifelse(grepl("2",data_p12$Subject), "Ctrl", "Expt")) %>%
-  mutate(Group = ifelse(grepl("4",data_p12$Subject), "Ctrl", "Expt")) %>%
-  mutate(Group = ifelse(grepl("6",data_p12$Subject), "Ctrl", "Expt")) %>%
-  mutate(Group = ifelse(grepl("8",data_p12$Subject), "Ctrl", "Expt"))
+  bind_rows
+
+data_p12 <- asngrp(data_p12)
 
 data_p12 %>%
   group_by(Group) %>%

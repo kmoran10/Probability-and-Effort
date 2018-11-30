@@ -21,5 +21,5 @@ cbindPad <- function(...){
   }
   rs <- lapply(args,pad,mx)
   return(do.call(cbind,rs))
-} #function to cbind and fill in empty rows with NAs
+} #function to cbind and fill in empty rows with NAs (for when merge doesn't work)
 
