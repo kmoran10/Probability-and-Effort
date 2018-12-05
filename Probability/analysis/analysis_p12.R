@@ -47,3 +47,15 @@ anova(lm(data_p12$total_inactive_LP ~ data_p12$Group)) #p=.48
 anova(lm(data_p12$mean_timetill_NP ~ data_p12$Group)) #p=.93
 anova(lm(data_p12$NP_responsestate ~ data_p12$Group)) #p=.81
 
+
+
+
+p12cl1 <- lapply(p12df, cleandata1)
+p12cl2 <- lapply(p12cl1, newcolumns)
+p12cl3 <- lapply(p12cl2, summary1)
+names(p12cl3) <- substr(p12files, 1, 31)
+
+p12clean1 <- p12cl3 %>% 
+  bind_rows
+
+p12clean1 <- asngrp(p12clean1)

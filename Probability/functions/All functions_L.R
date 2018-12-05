@@ -8,10 +8,10 @@ cleandata1 <- function(mydata){
   data2 <- data2[!apply(is.na(data2) | data2 == "", 1, all),] # remove all empty and NA cells
   data2.2 <-data2%>% # create a new data frame with only Number A1, Number A2 and Number A3
     select(Number.A1,Number.A2,Number.A3)
-  data2.2[-1,] # delete the first row
+  data2.2 <- data2.2[-1,] # delete the first row
   data2.3<-data2%>% # create a new data frame with the other columns
     select(Subject,Time.Start,Time.Finish, Duration,Enter.State)
-  data2.3[-nrow(data2.3),] # delete last row, so ther is an equal number of rows and this data frame can be merged with the one wih A1 A2 and A3
+  data2.3 <- data2.3[-nrow(data2.3),] # delete last row, so ther is an equal number of rows and this data frame can be merged with the one wih A1 A2 and A3
   cleandata0.1 <-cbind(data2.3, data2.2) # create a new data frame combining the previous 2
   cleandata0.1$Subject <-gsub("_", "",cleandata0.1$Subject) # removes _ from name
   return(cleandata0.1)
