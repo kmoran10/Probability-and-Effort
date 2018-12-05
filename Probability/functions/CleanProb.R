@@ -35,7 +35,7 @@ results1 <- data3 %>%
   group_by(Subject) %>%
   summarise(total_correct_LP = sum (correct.LP), total_inactive_LP = sum(inactive.LP), mean_timetill_NP = mean(timeafter.LP, na.rm = TRUE))
 
-## Now: NP_responsestate
+## Now: NP_responsestate-- total NP during response state S2
 
 npdata <- data %>%
   select(Subject.1, Time, Current.State, Transition.State, A1.., A2.., A3..) #select important cols

@@ -71,3 +71,4 @@ summary2<- function (mydata3){
     summarise(NP_responsestate = sum(NP_respstate))
   return(results2)
 }
+
