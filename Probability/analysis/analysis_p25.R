@@ -20,18 +20,18 @@ data_p25 <- p25res %>%
   bind_rows
 
 data_p25 <- asngrp(data_p25)
+p25cl1 <- lapply(p25df, cleandata1)
+p25cl2 <- lapply(p25cl1, newcolumns)
+p25cl3 <- lapply(p25cl2, summary1)
+names(p25cl3) <- substr(p25files, 1, 31)
 
-data_p25 %>%
-  group_by(Group) %>%
-  summarise(mean_correct_LP = mean(total_correct_LP))
+p25clean1 <- p25cl3 %>% 
+  bind_rows
 
-data_p25 %>%
-  group_by(Group) %>%
-  summarise(mean_inactive_LP = mean(total_inactive_LP))
+p25clean1 <- asngrp(p25clean1)
 
-data_p25 %>%
-  group_by(Group) %>%
-  summarise(mean_NP_responsestate = mean(NP_responsestate))
+data_p25$total_active_LP <- as.numeric(p25clean1$total_active_LP)
+
 
 
 lapply(data_p25[,2:5], function(x) t.test(x ~ data_p25$Group, var.equal = TRUE))

@@ -32,3 +32,10 @@ ggplot(data_test, aes(x=P, y=mean_timetill_NP, fill=Group)) +
 ggplot(data_test, aes(x=P, y=NP_responsestate, fill=Group)) +
   geom_boxplot() +
   scale_x_discrete(limits = torder)
+
+
+
+ggplot(data_test, aes(x=P, y=total_active_LP, fill=Group)) +
+  geom_boxplot() +
+  scale_x_discrete(limits = torder)
+

@@ -36,7 +36,7 @@ summary1 <- function (mydata2){
   library(tidyverse)
   results1 <-mydata2%>%
     group_by(Subject)%>% # group by subject
-    summarise(total_correct = sum(correct.LP),total_inactiveLP = sum(inactiveLP),time_np = mean(timeafterLP, na.rm=TRUE))#summarise of total correct LP, time to NP, and LP in inactive lever
+    summarise(total_active_LP = sum(Number.A2), total_correct = sum(correct.LP),total_inactiveLP = sum(inactiveLP),time_np = mean(timeafterLP, na.rm=TRUE))#summarise of total correct LP, time to NP, and LP in inactive lever, and total active LP
   return(results1)
 }
 

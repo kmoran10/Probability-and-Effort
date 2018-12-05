@@ -21,17 +21,18 @@ data_p100 <- p100res %>%
 
 data_p100 <- asngrp(data_p100)
 
-data_p100 %>%
-  group_by(Group) %>%
-  summarise(mean_correct_LP = mean(total_correct_LP))
 
-data_p100 %>%
-  group_by(Group) %>%
-  summarise(mean_inactive_LP = mean(total_inactive_LP))
+p100cl1 <- lapply(p100df, cleandata1)
+p100cl2 <- lapply(p100cl1, newcolumns)
+p100cl3 <- lapply(p100cl2, summary1)
+names(p100cl3) <- substr(p100files, 1, 31)
 
-data_p100 %>%
-  group_by(Group) %>%
-  summarise(mean_NP_responsestate = mean(NP_responsestate))
+p100clean1 <- p100cl3 %>% 
+  bind_rows
+
+p100clean1 <- asngrp(p100clean1)
+
+data_p100$total_active_LP <- as.numeric(p100clean1$total_active_LP)
 
 
 lapply(data_p100[,2:5], function(x) t.test(x ~ data_p100$Group, var.equal = TRUE))
